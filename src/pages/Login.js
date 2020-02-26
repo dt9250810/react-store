@@ -3,9 +3,30 @@ import ReactDOM from 'react-dom'
 
 
 class Login extends React.Component {
+
+  // constructor() {
+  //   super()
+  //   console.log(this)
+  //   this.handleClick = this.handleClick.bind(this)
+  // }
+
+  msg = "Clicked"
+
+  handleClick = (msg, event) => {
+    event.preventDefault()
+    alert(msg)
+    console.log(event)
+  }
+
   render() {
     return (
       <div className="login-wrapper">
+
+        <a href="/login" className="button" onClick={event => this.handleClick('msgggggg', event)}>
+          click me
+        </a>
+
+
         <form className="box login-box">
           <div class="field">
             <p class="control has-icons-left has-icons-right">
