@@ -4,30 +4,22 @@ import ReactDOM from 'react-dom'
 
 class Login extends React.Component {
 
-  // constructor() {
-  //   super()
-  //   console.log(this)
-  //   this.handleClick = this.handleClick.bind(this)
-  // }
-
-  msg = "Clicked"
-
-  handleClick = (msg, event) => {
+  handleSubmit = event => {
+    // 1. 阻止默認事件行為(跳轉)
     event.preventDefault()
-    alert(msg)
-    console.log(event)
+
+    // 2. 獲取 form 數據
+
+    // 3. 處理 登入 邏輯
+
+    // 4. 點擊後跳轉至首頁
+    this.props.history.push('/')
   }
 
   render() {
     return (
       <div className="login-wrapper">
-
-        <a href="/login" className="button" onClick={event => this.handleClick('msgggggg', event)}>
-          click me
-        </a>
-
-
-        <form className="box login-box">
+        <form className="box login-box" onSubmit={this.handleSubmit}>
           <div class="field">
             <p class="control has-icons-left has-icons-right">
               <input class="input" type="email" placeholder="Email" />
@@ -49,7 +41,7 @@ class Login extends React.Component {
           </div>
           <div class="field">
             <p class="control">
-              <button class="button is-success">
+              <button class="button is-success is-fullwidth">
                 Login
               </button>
             </p>
