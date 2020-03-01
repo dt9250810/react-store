@@ -5,31 +5,43 @@ import Product from 'components/Product'
 
 class Products extends React.Component {
   state = {
-    products: []
+    products: [],
+    sourceProducts: []
   };
 
   componentDidMount() {
-    // fetch('http://localhost:3001/products')
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log(data);
-    //     this.setState({  products: data })
-    //   })
-    //   .catch(err => { console.log('錯誤:', err); });
     axios.get('/products')
       .then(response => {
-        console.log(response.data);
-        this.setState({  products: response.data })
+        this.setState({ 
+            products: response.data,
+            sourceProducts: response.data
+          })
       })
       .catch(function (error) {
         console.log(error);
       })
   };
 
+  search = text => {
+    // 1. Get new array (products)
+    let _products = [...this.state.sourceProducts] // [] means that deep clone
+    
+    // 2. filter result
+    _products = _products.filter(p => {
+      const matchArray = p.name.match(new RegExp(text, 'gi'))
+      return matchArray !== null
+    })
+
+    // 3. set state
+    this.setState({
+      products: _products
+    })
+  }
+
   render() {
     return (
       <div>
-        <ToolBox />
+        <ToolBox search={this.search} />
         <div className="products">
           <div className="columns is-multiline is-desktop">
 
