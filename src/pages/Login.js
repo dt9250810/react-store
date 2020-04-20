@@ -31,7 +31,7 @@ class Login extends React.Component {
     // 3. 處理 登入 邏輯
 
     // 4. 點擊後跳轉至首頁
-    // this.props.history.push('/')
+    this.props.history.push('/')
   }
 
   handleChange = e => {

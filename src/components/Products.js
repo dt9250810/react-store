@@ -29,7 +29,7 @@ class Products extends React.Component {
     // 2. filter result
     _products = _products.filter(p => {
       const matchArray = p.name.match(new RegExp(text, 'gi'))
-      return matchArray !== null
+      return !!matchArray
     })
 
     // 3. set state
