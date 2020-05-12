@@ -45,8 +45,23 @@ class Products extends React.Component {
     Panel.open({
       component: AddInventory,
       callback: data => {
+        if(data) {
+          this.add(data);
+        }
         console.log(data);
       }
+    })
+  }
+
+  add = product => {
+    const _products = [...this.state.products]
+    _products.push(product)
+    const _sProducts = [...this.state.sourceProducts]
+    _sProducts.push(product)
+    
+    this.setState({
+      products: _products,
+      sourceProducts: _sProducts
     })
   }
 

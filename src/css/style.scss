@@ -102,6 +102,7 @@ body {
   .panel {
     transition: all 0.3s ease-in-out;
     transform: translateX(25rem);
+    background-color: rgb(185, 174, 174);
   }
   &.active {
     .over-layer {
@@ -395,6 +396,7 @@ body {
 // ---------- Inventory Component --------
 .inventory {
   padding: 1rem 2rem;
+  background-color: rgb(185, 174, 174);
 }
 
 // ----------- User Profile Components -------
