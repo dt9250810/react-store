@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-toastify'
 import axios from 'commons/axios'
 
 class AddInventory extends React.Component {
@@ -26,9 +27,10 @@ class AddInventory extends React.Component {
     axios.post('products', product).then(res => {
       console.log(res.data);
       this.props.close(res.data)
-      alert("Add success");
+      toast.success('Add success')
     })
   }
+
 
   render() {
     return (
