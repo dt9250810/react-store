@@ -49,6 +49,7 @@ class Product extends React.Component {
       }
   
       toast.success('Add Cart Success')
+      this.props.updateCartNum()
     } catch (error) {
       toast.error('Add Cart Fail')
     };

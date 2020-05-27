@@ -4,7 +4,7 @@ class ToolBox extends React.Component {
 
   state = {
     searchText: ''
-  }
+  };
 
   handleChange = e => {
     const value = e.target.value
@@ -13,12 +13,12 @@ class ToolBox extends React.Component {
     });
 
     this.props.search(value);
-  }
+  };
 
   clearSearchTest = () => { 
     this.setState({ searchText: '' });
     this.props.search('');
-  }
+  };
 
   render() {
     return (
@@ -42,7 +42,7 @@ class ToolBox extends React.Component {
         <div className="cart-box">
           <button className="button">
             <i className="fas fa-shopping-cart"></i>
-            <span className="cart-num">(0)</span>
+            <span className="cart-num">({this.props.cartNum})</span>
           </button>
         </div>
       </div>
