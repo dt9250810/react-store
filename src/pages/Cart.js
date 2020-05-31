@@ -12,7 +12,7 @@ const Cart = () => {
     axios.get('/carts').then(res =>
       setCarts(res.data)
     )
-  })
+  }, [])
 
   const totalPrice = () => {
     let totalPrice = carts.map(cart => cart.mount * parseInt(cart.price))
