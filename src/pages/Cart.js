@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import axios from 'commons/axios'
 import Layout from 'Layout'
 import CartItem from 'components/CartItem'
@@ -15,12 +15,12 @@ const Cart = () => {
     )
   }, [])
 
-  const totalPrice = () => {
+  const totalPrice = useMemo(() => {
     let totalPrice = carts.map(cart => cart.mount * parseInt(cart.price))
                           .reduce((total, value) => total + value, 0)
 
-    return totalPrice
-  }
+    return formatPrice(totalPrice)
+  }, [carts])
 
   const updateCart = cart => {
     const newCarts = [...carts]
@@ -63,7 +63,7 @@ const Cart = () => {
         <div className="cart-total">
           Total:
           <span className="total-price">
-            {formatPrice(totalPrice())}
+            {totalPrice}
           </span>
         </div>
       </div>
