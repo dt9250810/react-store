@@ -1,23 +1,35 @@
 import React, { Fragment } from 'react'
 import { useForm } from 'react-hook-form'
+import axios from 'commons/axios'
+import { toast } from 'react-toastify'
 
 export default function Login(props) {
 
   const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = data => {
+  const onSubmit = async data => {
     // 2. 獲取 form 數據
     // const formData = {
     //   email: this.emailRef.current.value, 
     //   password: this.passwordRef.current.value
     // }
-    console.log(data)
+    console.log("data", data)
     // 3. 處理 登入 邏輯
-
-    // 4. 點擊後跳轉至首頁
-    // this.props.history.push('/')
+    try {
+      const { email, password } = data
+      const res = await axios.post('/auth/login', { email, password})
+      const jwToken = res.data;
+      console.log(jwToken);
+      global.auth.setToken(jwToken)
+      toast.success('Login success')
+      // 4. 點擊後跳轉至首頁
+      props.history.push('/')
+    } catch (error) {
+      console.log(error.response.data);
+      const message = error.response.data.message;
+      toast.error(message)
+    }
   }
-  console.log(errors)
 
   return (
     <div className="login-wrapper">
